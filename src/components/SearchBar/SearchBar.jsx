@@ -13,9 +13,9 @@ export class SearchBar extends Component {
   handleKeyWordChange = e => {
     this.setState({ query: e.currentTarget.value.toLowerCase() });
 
-    if (e.currentTarget.value.trim().length === 0) {
-      this.props.onQueryChange(e.currentTarget.value);
-    }
+    // if (e.currentTarget.value.trim().length === 0) {
+    //   this.props.onQueryChange(e.currentTarget.value);
+    // }
   };
 
   handleFormSubmit = e => {
@@ -55,5 +55,5 @@ export class SearchBar extends Component {
 
 SearchBar.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
-  onQueryChange: PropTypes.func.isRequired,
+  // onQueryChange: PropTypes.func.isRequired,
 };

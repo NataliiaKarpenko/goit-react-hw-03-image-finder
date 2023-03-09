@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { ErrorViewStyled } from './ErrorViewStyled';
 
-import errorImage from '../images/errorImage.png';
+import errorImage from '../../images/errorImage.png';
 
 export const ErrorView = ({ message }) => {
   return (

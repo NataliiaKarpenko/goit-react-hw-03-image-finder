@@ -1,4 +1,4 @@
-import welcomeImage from '../images/welcomeImage.jpeg';
+import welcomeImage from '../../images/welcomeImage.jpeg';
 import { WelcomeViewStyled } from './WelcomeViewStyled';
 
 export const WelcomeView = () => {

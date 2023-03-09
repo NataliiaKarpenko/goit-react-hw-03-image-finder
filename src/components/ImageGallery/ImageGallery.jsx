@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { ImageGalleryStyled } from './ImageGalleryStyled';
-import { ImageGalleryItem } from '../image-gallery-item/ImageGalleryItem';
+import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
 
 export const ImageGallery = ({ photos, onOpenModal }) => {
   return (

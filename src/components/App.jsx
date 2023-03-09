@@ -1,15 +1,15 @@
 import { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { WelcomeView } from './welcome-view/WelcomeView';
-import { ErrorView } from './error-view/ErrorView';
+import { WelcomeView } from './WelcomeView/WelcomeView';
+import { ErrorView } from './ErrorView/ErrorView';
 
-import { SearchBar } from './search-bar/SearchBar';
+import { SearchBar } from './SearchBar/SearchBar';
 import { requestPhotos } from './APIRequest';
-import { ImageGallery } from './image-gallery/ImageGallery';
-import { Modal } from './modal/Modal';
-import { LoadMoreBtn } from './load-more-btn/LoadMoreBtn';
-import { Loader } from './loader/Loader';
+import { ImageGallery } from './ImageGallery/ImageGallery';
+import { Modal } from './Modal/Modal';
+import { LoadMoreBtn } from './LoadMoreBtn/LoadMoreBtn';
+import { Loader } from './Loader/Loader';
 
 export class App extends Component {
   state = {
@@ -29,11 +29,14 @@ export class App extends Component {
     const prevQuery = prevState.query;
     const prevPage = prevState.page;
 
-    if (prevQuery !== this.state.query) {
-      this.setState({ photos: [], page: 1 });
-      this.fetchPhotos();
-    }
-    if (prevPage !== this.state.page) {
+    // if (prevQuery !== this.state.query) {
+    //   this.setState({ photos: [], page: 1 });
+    //   this.fetchPhotos();
+    // }
+    // if (prevPage !== this.state.page) {
+    //   this.fetchPhotos();
+    // }
+    if (prevQuery !== this.state.query || prevPage !== this.state.page) {
       this.fetchPhotos();
     }
   }
@@ -63,7 +66,6 @@ export class App extends Component {
           totalHits,
           status: 'resolved',
         }));
-        this.onToggleLoader();
       }
     } catch (error) {
       console.log(error);
@@ -77,12 +79,21 @@ export class App extends Component {
   };
 
   onFormSubmit = query => {
-    this.setState({ query });
+    this.setState({
+      query,
+      photos: [],
+      page: 1,
+      perPage: 12,
+      totalHits: 0,
+      largeImageURL: '',
+      showModal: false,
+      isLoading: false,
+    });
   };
 
-  onQueryChange = query => {
-    this.setState({ query });
-  };
+  // onQueryChange = query => {
+  //   this.setState({ query });
+  // };
 
   onLoadMorePhotos = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
@@ -105,12 +116,13 @@ export class App extends Component {
   };
 
   onScrollPage = () => {
-    setTimeout(() => {
-      window.scrollBy({
-        top: document.documentElement.clientHeight - 160,
-        behavior: 'smooth',
-      });
-    }, 500);
+    // setTimeout(() => {
+    window.scrollBy({
+      top: document.documentElement.clientHeight - 160,
+
+      behavior: 'smooth',
+    });
+    // }, 1000);
   };
 
   render() {
